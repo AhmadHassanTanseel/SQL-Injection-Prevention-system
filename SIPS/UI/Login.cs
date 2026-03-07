@@ -1,3 +1,5 @@
+using SIPS.UI;
+
 namespace SIPS
 {
     public partial class Login : Form
@@ -10,6 +12,13 @@ namespace SIPS
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Registeration regForm = new Registeration();
+            regForm.Show();
+            this.Hide();
         }
     }
 }

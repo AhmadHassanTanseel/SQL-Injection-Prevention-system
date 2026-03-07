@@ -34,6 +34,8 @@
             label2 = new Label();
             button1 = new Button();
             button2 = new Button();
+            checkBox1 = new CheckBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // textBox1
@@ -49,6 +51,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(283, 31);
             textBox2.TabIndex = 1;
+            textBox2.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -81,18 +84,41 @@
             // button2
             // 
             button2.BackColor = SystemColors.Control;
-            button2.Location = new Point(542, 378);
+            button2.Location = new Point(544, 405);
             button2.Name = "button2";
-            button2.Size = new Size(229, 60);
+            button2.Size = new Size(227, 33);
             button2.TabIndex = 5;
-            button2.Text = "not have an account?\r\nClick to register";
+            button2.Text = "New User? Register";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(12, 12);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(247, 29);
+            checkBox1.TabIndex = 6;
+            checkBox1.Text = "Enable Signature Scanning";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Black", 16F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label3.Location = new Point(316, 73);
+            label3.Name = "label3";
+            label3.Size = new Size(108, 45);
+            label3.TabIndex = 7;
+            label3.Text = "Login";
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label3);
+            Controls.Add(checkBox1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label2);
@@ -113,5 +139,7 @@
         private Label label2;
         private Button button1;
         private Button button2;
+        private CheckBox checkBox1;
+        private Label label3;
     }
 }
