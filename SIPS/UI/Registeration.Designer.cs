@@ -193,7 +193,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1178, 744);
             Controls.Add(button2);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
@@ -208,6 +208,7 @@
             Controls.Add(label1);
             Name = "Registeration";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

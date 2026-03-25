@@ -40,14 +40,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(390, 187);
+            textBox1.Location = new Point(557, 267);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(283, 31);
             textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(390, 238);
+            textBox2.Location = new Point(557, 318);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(283, 31);
             textBox2.TabIndex = 1;
@@ -56,7 +56,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(159, 187);
+            label1.Location = new Point(326, 267);
             label1.Name = "label1";
             label1.Size = new Size(54, 25);
             label1.TabIndex = 2;
@@ -66,7 +66,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(159, 244);
+            label2.Location = new Point(326, 324);
             label2.Name = "label2";
             label2.Size = new Size(87, 25);
             label2.TabIndex = 3;
@@ -74,7 +74,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(312, 318);
+            button1.Location = new Point(479, 398);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 4;
@@ -84,7 +84,7 @@
             // button2
             // 
             button2.BackColor = SystemColors.Control;
-            button2.Location = new Point(544, 405);
+            button2.Location = new Point(711, 485);
             button2.Name = "button2";
             button2.Size = new Size(227, 33);
             button2.TabIndex = 5;
@@ -95,18 +95,19 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(12, 12);
+            checkBox1.Location = new Point(179, 92);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(247, 29);
             checkBox1.TabIndex = 6;
             checkBox1.Text = "Enable Signature Scanning";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Black", 16F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label3.Location = new Point(316, 73);
+            label3.Location = new Point(483, 153);
             label3.Name = "label3";
             label3.Size = new Size(108, 45);
             label3.TabIndex = 7;
@@ -116,7 +117,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1178, 744);
             Controls.Add(label3);
             Controls.Add(checkBox1);
             Controls.Add(button2);
@@ -127,6 +128,7 @@
             Controls.Add(textBox1);
             Name = "Login";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
             PerformLayout();
         }
