@@ -32,21 +32,28 @@
             panel2 = new Panel();
             tabControl1 = new TabControl();
             tpInventory = new TabPage();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
+            textBox4 = new TextBox();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             dgvMagazines = new DataGridView();
             tpOrders = new TabPage();
             tpUsers = new TabPage();
             tpSales = new TabPage();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            richTextBox1 = new RichTextBox();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             tpInventory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMagazines).BeginInit();
@@ -54,19 +61,24 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(button7);
+            panel1.Controls.Add(button6);
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(button4);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(172, 744);
+            panel1.Size = new Size(269, 744);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
             // panel2
             // 
+            panel2.Controls.Add(richTextBox1);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(172, 644);
+            panel2.Location = new Point(269, 644);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1006, 100);
+            panel2.Size = new Size(909, 100);
             panel2.TabIndex = 1;
             // 
             // tabControl1
@@ -76,10 +88,10 @@
             tabControl1.Controls.Add(tpUsers);
             tabControl1.Controls.Add(tpSales);
             tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(172, 0);
+            tabControl1.Location = new Point(269, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1006, 644);
+            tabControl1.Size = new Size(909, 644);
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
@@ -100,16 +112,111 @@
             tpInventory.Location = new Point(4, 34);
             tpInventory.Name = "tpInventory";
             tpInventory.Padding = new Padding(3);
-            tpInventory.Size = new Size(998, 606);
+            tpInventory.Size = new Size(901, 606);
             tpInventory.TabIndex = 0;
             tpInventory.Text = "Magazines";
             tpInventory.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(330, 527);
+            button3.Name = "button3";
+            button3.Size = new Size(112, 34);
+            button3.TabIndex = 12;
+            button3.Text = "Delete";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(172, 527);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 11;
+            button2.Text = "Update";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(6, 527);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 10;
+            button1.Text = "Add";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(49, 428);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(342, 31);
+            textBox4.TabIndex = 9;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(49, 313);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(342, 31);
+            textBox3.TabIndex = 8;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(49, 213);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(342, 31);
+            textBox2.TabIndex = 7;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(49, 117);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(342, 31);
+            textBox1.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(159, 366);
+            label4.Name = "label4";
+            label4.Size = new Size(128, 25);
+            label4.TabIndex = 5;
+            label4.Text = "Stock Quantity";
+            label4.Click += label4_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(172, 165);
+            label3.Name = "label3";
+            label3.Size = new Size(84, 25);
+            label3.TabIndex = 4;
+            label3.Text = "Category";
+            label3.Click += label3_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(191, 268);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 25);
+            label2.TabIndex = 3;
+            label2.Text = "Price";
+            label2.Click += label2_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(159, 78);
+            label1.Name = "label1";
+            label1.Size = new Size(125, 25);
+            label1.TabIndex = 2;
+            label1.Text = "Magazine Title";
+            label1.Click += label1_Click;
             // 
             // dgvMagazines
             // 
             dgvMagazines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMagazines.Dock = DockStyle.Right;
-            dgvMagazines.Location = new Point(546, 3);
+            dgvMagazines.Location = new Point(449, 3);
             dgvMagazines.Name = "dgvMagazines";
             dgvMagazines.RowHeadersWidth = 62;
             dgvMagazines.Size = new Size(449, 600);
@@ -130,7 +237,7 @@
             tpUsers.Location = new Point(4, 34);
             tpUsers.Name = "tpUsers";
             tpUsers.Padding = new Padding(3);
-            tpUsers.Size = new Size(620, 312);
+            tpUsers.Size = new Size(998, 606);
             tpUsers.TabIndex = 2;
             tpUsers.Text = "Users Info";
             tpUsers.UseVisualStyleBackColor = true;
@@ -140,104 +247,57 @@
             tpSales.Location = new Point(4, 34);
             tpSales.Name = "tpSales";
             tpSales.Padding = new Padding(3);
-            tpSales.Size = new Size(620, 312);
+            tpSales.Size = new Size(998, 606);
             tpSales.TabIndex = 3;
             tpSales.Text = "Revenue";
             tpSales.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // richTextBox1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(129, 77);
-            label1.Name = "label1";
-            label1.Size = new Size(125, 25);
-            label1.TabIndex = 2;
-            label1.Text = "Magazine Title";
+            richTextBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = SystemColors.InfoText;
+            richTextBox1.Location = new Point(0, 0);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(1006, 100);
+            richTextBox1.TabIndex = 0;
+            richTextBox1.Text = "";
             // 
-            // label2
+            // button4
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(152, 268);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 25);
-            label2.TabIndex = 3;
-            label2.Text = "Price";
-            label2.Click += label2_Click;
+            button4.Location = new Point(30, 174);
+            button4.Name = "button4";
+            button4.Size = new Size(208, 34);
+            button4.TabIndex = 0;
+            button4.Text = "Magazines";
+            button4.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // button5
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(140, 165);
-            label3.Name = "label3";
-            label3.Size = new Size(84, 25);
-            label3.TabIndex = 4;
-            label3.Text = "Category";
-            label3.Click += label3_Click;
+            button5.Location = new Point(30, 381);
+            button5.Name = "button5";
+            button5.Size = new Size(198, 34);
+            button5.TabIndex = 1;
+            button5.Text = "Revenue";
+            button5.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // button6
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(126, 367);
-            label4.Name = "label4";
-            label4.Size = new Size(128, 25);
-            label4.TabIndex = 5;
-            label4.Text = "Stock Quantity";
-            label4.Click += label4_Click;
+            button6.Location = new Point(30, 315);
+            button6.Name = "button6";
+            button6.Size = new Size(198, 34);
+            button6.TabIndex = 2;
+            button6.Text = "User Info";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
-            // textBox1
+            // button7
             // 
-            textBox1.Location = new Point(6, 117);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(436, 31);
-            textBox1.TabIndex = 6;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(6, 213);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(436, 31);
-            textBox2.TabIndex = 7;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(6, 313);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(436, 31);
-            textBox3.TabIndex = 8;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(6, 428);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(436, 31);
-            textBox4.TabIndex = 9;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(6, 527);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 10;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(172, 527);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 11;
-            button2.Text = "Update";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(330, 527);
-            button3.Name = "button3";
-            button3.Size = new Size(112, 34);
-            button3.TabIndex = 12;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            button7.Location = new Point(30, 244);
+            button7.Name = "button7";
+            button7.Size = new Size(208, 34);
+            button7.TabIndex = 3;
+            button7.Text = "Bookings";
+            button7.UseVisualStyleBackColor = true;
             // 
             // Admin
             // 
@@ -250,6 +310,8 @@
             Name = "Admin";
             Text = "Admin";
             WindowState = FormWindowState.Maximized;
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tpInventory.ResumeLayout(false);
             tpInventory.PerformLayout();
@@ -278,5 +340,10 @@
         private Button button1;
         private TextBox textBox4;
         private TextBox textBox3;
+        private RichTextBox richTextBox1;
+        private Button button7;
+        private Button button6;
+        private Button button5;
+        private Button button4;
     }
 }
