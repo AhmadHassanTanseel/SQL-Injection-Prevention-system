@@ -62,6 +62,9 @@
             dataGridView3 = new DataGridView();
             label5 = new Label();
             button13 = new Button();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -160,6 +163,7 @@
             // 
             // tpInventory
             // 
+            tpInventory.Controls.Add(label8);
             tpInventory.Controls.Add(button3);
             tpInventory.Controls.Add(button2);
             tpInventory.Controls.Add(button1);
@@ -278,15 +282,15 @@
             // dgvMagazines
             // 
             dgvMagazines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMagazines.Dock = DockStyle.Right;
-            dgvMagazines.Location = new Point(449, 3);
+            dgvMagazines.Location = new Point(449, 78);
             dgvMagazines.Name = "dgvMagazines";
             dgvMagazines.RowHeadersWidth = 62;
-            dgvMagazines.Size = new Size(449, 600);
+            dgvMagazines.Size = new Size(449, 525);
             dgvMagazines.TabIndex = 1;
             // 
             // tpOrders
             // 
+            tpOrders.Controls.Add(label7);
             tpOrders.Controls.Add(button9);
             tpOrders.Controls.Add(button8);
             tpOrders.Controls.Add(dataGridView1);
@@ -319,15 +323,15 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Top;
-            dataGridView1.Location = new Point(3, 3);
+            dataGridView1.Location = new Point(2, 60);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(895, 523);
+            dataGridView1.Size = new Size(896, 466);
             dataGridView1.TabIndex = 2;
             // 
             // tpUsers
             // 
+            tpUsers.Controls.Add(label6);
             tpUsers.Controls.Add(button10);
             tpUsers.Controls.Add(button11);
             tpUsers.Controls.Add(button12);
@@ -357,11 +361,10 @@
             // 
             dataGridView2.AllowUserToOrderColumns = true;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Dock = DockStyle.Top;
-            dataGridView2.Location = new Point(3, 3);
+            dataGridView2.Location = new Point(0, 73);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.Size = new Size(895, 516);
+            dataGridView2.Size = new Size(898, 446);
             dataGridView2.TabIndex = 3;
             // 
             // button11
@@ -421,6 +424,36 @@
             button13.Text = "Refresh";
             button13.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label6.Location = new Point(341, 17);
+            label6.Name = "label6";
+            label6.Size = new Size(149, 38);
+            label6.TabIndex = 7;
+            label6.Text = "Users Info";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label7.Location = new Point(341, 3);
+            label7.Name = "label7";
+            label7.Size = new Size(139, 38);
+            label7.TabIndex = 8;
+            label7.Text = "Bookings";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label8.Location = new Point(330, 17);
+            label8.Name = "label8";
+            label8.Size = new Size(156, 38);
+            label8.TabIndex = 13;
+            label8.Text = "Magazines";
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -439,8 +472,10 @@
             tpInventory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMagazines).EndInit();
             tpOrders.ResumeLayout(false);
+            tpOrders.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tpUsers.ResumeLayout(false);
+            tpUsers.PerformLayout();
             tpSales.ResumeLayout(false);
             tpSales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
@@ -484,5 +519,8 @@
         private DataGridView dataGridView3;
         private Label label5;
         private Button button13;
+        private Label label8;
+        private Label label7;
+        private Label label6;
     }
 }
