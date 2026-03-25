@@ -29,7 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button7 = new Button();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
             panel2 = new Panel();
+            richTextBox1 = new RichTextBox();
             tabControl1 = new TabControl();
             tpInventory = new TabPage();
             button3 = new Button();
@@ -45,18 +50,24 @@
             label1 = new Label();
             dgvMagazines = new DataGridView();
             tpOrders = new TabPage();
+            button9 = new Button();
+            button8 = new Button();
+            dataGridView1 = new DataGridView();
             tpUsers = new TabPage();
             tpSales = new TabPage();
-            richTextBox1 = new RichTextBox();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
+            dataGridView2 = new DataGridView();
+            button11 = new Button();
+            button12 = new Button();
+            button10 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
             tpInventory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMagazines).BeginInit();
+            tpOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tpUsers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -72,6 +83,43 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // button7
+            // 
+            button7.Location = new Point(30, 244);
+            button7.Name = "button7";
+            button7.Size = new Size(208, 34);
+            button7.TabIndex = 3;
+            button7.Text = "Bookings";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(30, 315);
+            button6.Name = "button6";
+            button6.Size = new Size(198, 34);
+            button6.TabIndex = 2;
+            button6.Text = "User Info";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(30, 381);
+            button5.Name = "button5";
+            button5.Size = new Size(198, 34);
+            button5.TabIndex = 1;
+            button5.Text = "Revenue";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(30, 174);
+            button4.Name = "button4";
+            button4.Size = new Size(208, 34);
+            button4.TabIndex = 0;
+            button4.Text = "Magazines";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // panel2
             // 
             panel2.Controls.Add(richTextBox1);
@@ -80,6 +128,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(909, 100);
             panel2.TabIndex = 1;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = SystemColors.InfoText;
+            richTextBox1.Location = new Point(0, 0);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(1006, 100);
+            richTextBox1.TabIndex = 0;
+            richTextBox1.Text = "";
             // 
             // tabControl1
             // 
@@ -224,20 +282,55 @@
             // 
             // tpOrders
             // 
+            tpOrders.Controls.Add(button9);
+            tpOrders.Controls.Add(button8);
+            tpOrders.Controls.Add(dataGridView1);
             tpOrders.Location = new Point(4, 34);
             tpOrders.Name = "tpOrders";
             tpOrders.Padding = new Padding(3);
-            tpOrders.Size = new Size(998, 606);
+            tpOrders.Size = new Size(901, 606);
             tpOrders.TabIndex = 1;
             tpOrders.Text = "Bookings";
             tpOrders.UseVisualStyleBackColor = true;
             // 
+            // button9
+            // 
+            button9.Location = new Point(506, 539);
+            button9.Name = "button9";
+            button9.Size = new Size(208, 34);
+            button9.TabIndex = 4;
+            button9.Text = "Approve Bookings";
+            button9.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(127, 539);
+            button8.Name = "button8";
+            button8.Size = new Size(208, 34);
+            button8.TabIndex = 3;
+            button8.Text = "Cancel Bookings";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Top;
+            dataGridView1.Location = new Point(3, 3);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(895, 523);
+            dataGridView1.TabIndex = 2;
+            // 
             // tpUsers
             // 
+            tpUsers.Controls.Add(button10);
+            tpUsers.Controls.Add(button11);
+            tpUsers.Controls.Add(button12);
+            tpUsers.Controls.Add(dataGridView2);
             tpUsers.Location = new Point(4, 34);
             tpUsers.Name = "tpUsers";
             tpUsers.Padding = new Padding(3);
-            tpUsers.Size = new Size(998, 606);
+            tpUsers.Size = new Size(901, 606);
             tpUsers.TabIndex = 2;
             tpUsers.Text = "Users Info";
             tpUsers.UseVisualStyleBackColor = true;
@@ -247,57 +340,48 @@
             tpSales.Location = new Point(4, 34);
             tpSales.Name = "tpSales";
             tpSales.Padding = new Padding(3);
-            tpSales.Size = new Size(998, 606);
+            tpSales.Size = new Size(901, 606);
             tpSales.TabIndex = 3;
             tpSales.Text = "Revenue";
             tpSales.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // dataGridView2
             // 
-            richTextBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            richTextBox1.ForeColor = SystemColors.InfoText;
-            richTextBox1.Location = new Point(0, 0);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(1006, 100);
-            richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
+            dataGridView2.AllowUserToOrderColumns = true;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Dock = DockStyle.Top;
+            dataGridView2.Location = new Point(3, 3);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 62;
+            dataGridView2.Size = new Size(895, 516);
+            dataGridView2.TabIndex = 3;
             // 
-            // button4
+            // button11
             // 
-            button4.Location = new Point(30, 174);
-            button4.Name = "button4";
-            button4.Size = new Size(208, 34);
-            button4.TabIndex = 0;
-            button4.Text = "Magazines";
-            button4.UseVisualStyleBackColor = true;
+            button11.Location = new Point(332, 547);
+            button11.Name = "button11";
+            button11.Size = new Size(253, 34);
+            button11.TabIndex = 5;
+            button11.Text = "Update Info";
+            button11.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // button12
             // 
-            button5.Location = new Point(30, 381);
-            button5.Name = "button5";
-            button5.Size = new Size(198, 34);
-            button5.TabIndex = 1;
-            button5.Text = "Revenue";
-            button5.UseVisualStyleBackColor = true;
+            button12.Location = new Point(640, 547);
+            button12.Name = "button12";
+            button12.Size = new Size(253, 34);
+            button12.TabIndex = 4;
+            button12.Text = "Delete";
+            button12.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // button10
             // 
-            button6.Location = new Point(30, 315);
-            button6.Name = "button6";
-            button6.Size = new Size(198, 34);
-            button6.TabIndex = 2;
-            button6.Text = "User Info";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
-            // 
-            // button7
-            // 
-            button7.Location = new Point(30, 244);
-            button7.Name = "button7";
-            button7.Size = new Size(208, 34);
-            button7.TabIndex = 3;
-            button7.Text = "Bookings";
-            button7.UseVisualStyleBackColor = true;
+            button10.Location = new Point(23, 547);
+            button10.Name = "button10";
+            button10.Size = new Size(253, 34);
+            button10.TabIndex = 6;
+            button10.Text = "Add User";
+            button10.UseVisualStyleBackColor = true;
             // 
             // Admin
             // 
@@ -316,6 +400,10 @@
             tpInventory.ResumeLayout(false);
             tpInventory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMagazines).EndInit();
+            tpOrders.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tpUsers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
         }
 
@@ -345,5 +433,12 @@
         private Button button6;
         private Button button5;
         private Button button4;
+        private Button button9;
+        private Button button8;
+        private DataGridView dataGridView1;
+        private Button button11;
+        private Button button12;
+        private DataGridView dataGridView2;
+        private Button button10;
     }
 }
