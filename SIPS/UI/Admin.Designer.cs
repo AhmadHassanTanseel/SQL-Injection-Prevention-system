@@ -59,6 +59,9 @@
             button11 = new Button();
             button12 = new Button();
             button10 = new Button();
+            dataGridView3 = new DataGridView();
+            label5 = new Label();
+            button13 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -67,7 +70,9 @@
             tpOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tpUsers.SuspendLayout();
+            tpSales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -337,6 +342,9 @@
             // 
             // tpSales
             // 
+            tpSales.Controls.Add(button13);
+            tpSales.Controls.Add(label5);
+            tpSales.Controls.Add(dataGridView3);
             tpSales.Location = new Point(4, 34);
             tpSales.Name = "tpSales";
             tpSales.Padding = new Padding(3);
@@ -383,6 +391,36 @@
             button10.Text = "Add User";
             button10.UseVisualStyleBackColor = true;
             // 
+            // dataGridView3
+            // 
+            dataGridView3.AllowUserToOrderColumns = true;
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Dock = DockStyle.Bottom;
+            dataGridView3.Location = new Point(3, 87);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowHeadersWidth = 62;
+            dataGridView3.Size = new Size(895, 516);
+            dataGridView3.TabIndex = 4;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label5.Location = new Point(337, 26);
+            label5.Name = "label5";
+            label5.Size = new Size(200, 38);
+            label5.TabIndex = 5;
+            label5.Text = "Total Revenue";
+            // 
+            // button13
+            // 
+            button13.Location = new Point(786, 47);
+            button13.Name = "button13";
+            button13.Size = new Size(112, 34);
+            button13.TabIndex = 4;
+            button13.Text = "Refresh";
+            button13.UseVisualStyleBackColor = true;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -403,7 +441,10 @@
             tpOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tpUsers.ResumeLayout(false);
+            tpSales.ResumeLayout(false);
+            tpSales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
         }
 
@@ -440,5 +481,8 @@
         private Button button12;
         private DataGridView dataGridView2;
         private Button button10;
+        private DataGridView dataGridView3;
+        private Label label5;
+        private Button button13;
     }
 }

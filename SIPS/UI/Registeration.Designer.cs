@@ -50,7 +50,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 16F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label1.Location = new Point(312, 19);
+            label1.Location = new Point(461, 123);
             label1.Name = "label1";
             label1.Size = new Size(366, 45);
             label1.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(403, 356);
+            button1.Location = new Point(552, 460);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(447, 132);
+            textBox1.Location = new Point(596, 236);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(329, 31);
             textBox1.TabIndex = 2;
@@ -86,7 +86,7 @@
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(richTextBox1);
-            panel1.Location = new Point(12, 19);
+            panel1.Location = new Point(161, 123);
             panel1.Name = "panel1";
             panel1.Size = new Size(260, 300);
             panel1.TabIndex = 4;
@@ -115,7 +115,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(312, 138);
+            label2.Location = new Point(461, 242);
             label2.Name = "label2";
             label2.Size = new Size(62, 25);
             label2.TabIndex = 0;
@@ -126,7 +126,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(316, 190);
+            label3.Location = new Point(465, 294);
             label3.Name = "label3";
             label3.Size = new Size(58, 25);
             label3.TabIndex = 5;
@@ -137,7 +137,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(312, 241);
+            label4.Location = new Point(461, 345);
             label4.Name = "label4";
             label4.Size = new Size(92, 25);
             label4.TabIndex = 6;
@@ -148,7 +148,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(312, 294);
+            label5.Location = new Point(461, 398);
             label5.Name = "label5";
             label5.Size = new Size(80, 25);
             label5.TabIndex = 7;
@@ -157,7 +157,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(447, 288);
+            textBox2.Location = new Point(596, 392);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(329, 31);
@@ -166,7 +166,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(447, 235);
+            textBox3.Location = new Point(596, 339);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(327, 31);
             textBox3.TabIndex = 9;
@@ -174,14 +174,14 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(447, 184);
+            textBox4.Location = new Point(596, 288);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(325, 31);
             textBox4.TabIndex = 10;
             // 
             // button2
             // 
-            button2.Location = new Point(575, 414);
+            button2.Location = new Point(724, 518);
             button2.Name = "button2";
             button2.Size = new Size(201, 34);
             button2.TabIndex = 11;
