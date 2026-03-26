@@ -37,6 +37,7 @@
             richTextBox1 = new RichTextBox();
             tabControl1 = new TabControl();
             tpInventory = new TabPage();
+            label8 = new Label();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -50,21 +51,20 @@
             label1 = new Label();
             dgvMagazines = new DataGridView();
             tpOrders = new TabPage();
+            label7 = new Label();
             button9 = new Button();
             button8 = new Button();
             dataGridView1 = new DataGridView();
             tpUsers = new TabPage();
-            tpSales = new TabPage();
-            dataGridView2 = new DataGridView();
+            label6 = new Label();
+            button10 = new Button();
             button11 = new Button();
             button12 = new Button();
-            button10 = new Button();
-            dataGridView3 = new DataGridView();
-            label5 = new Label();
+            dataGridView2 = new DataGridView();
+            tpSales = new TabPage();
             button13 = new Button();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
+            label5 = new Label();
+            dataGridView3 = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -73,8 +73,8 @@
             tpOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tpUsers.SuspendLayout();
-            tpSales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tpSales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SuspendLayout();
             // 
@@ -99,6 +99,7 @@
             button7.TabIndex = 3;
             button7.Text = "Bookings";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // button6
             // 
@@ -118,6 +119,7 @@
             button5.TabIndex = 1;
             button5.Text = "Revenue";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
@@ -127,6 +129,7 @@
             button4.TabIndex = 0;
             button4.Text = "Magazines";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // panel2
             // 
@@ -149,15 +152,18 @@
             // 
             // tabControl1
             // 
+            tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.Controls.Add(tpInventory);
             tabControl1.Controls.Add(tpOrders);
             tabControl1.Controls.Add(tpUsers);
             tabControl1.Controls.Add(tpSales);
             tabControl1.Dock = DockStyle.Fill;
+            tabControl1.ItemSize = new Size(0, 1);
             tabControl1.Location = new Point(269, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(909, 644);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
@@ -176,13 +182,23 @@
             tpInventory.Controls.Add(label2);
             tpInventory.Controls.Add(label1);
             tpInventory.Controls.Add(dgvMagazines);
-            tpInventory.Location = new Point(4, 34);
+            tpInventory.Location = new Point(4, 5);
             tpInventory.Name = "tpInventory";
             tpInventory.Padding = new Padding(3);
-            tpInventory.Size = new Size(901, 606);
+            tpInventory.Size = new Size(901, 635);
             tpInventory.TabIndex = 0;
             tpInventory.Text = "Magazines";
             tpInventory.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label8.Location = new Point(330, 17);
+            label8.Name = "label8";
+            label8.Size = new Size(156, 38);
+            label8.TabIndex = 13;
+            label8.Text = "Magazines";
             // 
             // button3
             // 
@@ -294,13 +310,23 @@
             tpOrders.Controls.Add(button9);
             tpOrders.Controls.Add(button8);
             tpOrders.Controls.Add(dataGridView1);
-            tpOrders.Location = new Point(4, 34);
+            tpOrders.Location = new Point(4, 5);
             tpOrders.Name = "tpOrders";
             tpOrders.Padding = new Padding(3);
-            tpOrders.Size = new Size(901, 606);
+            tpOrders.Size = new Size(901, 635);
             tpOrders.TabIndex = 1;
             tpOrders.Text = "Bookings";
             tpOrders.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label7.Location = new Point(341, 3);
+            label7.Name = "label7";
+            label7.Size = new Size(139, 38);
+            label7.TabIndex = 8;
+            label7.Text = "Bookings";
             // 
             // button9
             // 
@@ -336,36 +362,32 @@
             tpUsers.Controls.Add(button11);
             tpUsers.Controls.Add(button12);
             tpUsers.Controls.Add(dataGridView2);
-            tpUsers.Location = new Point(4, 34);
+            tpUsers.Location = new Point(4, 5);
             tpUsers.Name = "tpUsers";
             tpUsers.Padding = new Padding(3);
-            tpUsers.Size = new Size(901, 606);
+            tpUsers.Size = new Size(901, 635);
             tpUsers.TabIndex = 2;
             tpUsers.Text = "Users Info";
             tpUsers.UseVisualStyleBackColor = true;
             // 
-            // tpSales
+            // label6
             // 
-            tpSales.Controls.Add(button13);
-            tpSales.Controls.Add(label5);
-            tpSales.Controls.Add(dataGridView3);
-            tpSales.Location = new Point(4, 34);
-            tpSales.Name = "tpSales";
-            tpSales.Padding = new Padding(3);
-            tpSales.Size = new Size(901, 606);
-            tpSales.TabIndex = 3;
-            tpSales.Text = "Revenue";
-            tpSales.UseVisualStyleBackColor = true;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label6.Location = new Point(341, 17);
+            label6.Name = "label6";
+            label6.Size = new Size(149, 38);
+            label6.TabIndex = 7;
+            label6.Text = "Users Info";
             // 
-            // dataGridView2
+            // button10
             // 
-            dataGridView2.AllowUserToOrderColumns = true;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(0, 73);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.Size = new Size(898, 446);
-            dataGridView2.TabIndex = 3;
+            button10.Location = new Point(23, 547);
+            button10.Name = "button10";
+            button10.Size = new Size(253, 34);
+            button10.TabIndex = 6;
+            button10.Text = "Add User";
+            button10.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
@@ -385,25 +407,37 @@
             button12.Text = "Delete";
             button12.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // dataGridView2
             // 
-            button10.Location = new Point(23, 547);
-            button10.Name = "button10";
-            button10.Size = new Size(253, 34);
-            button10.TabIndex = 6;
-            button10.Text = "Add User";
-            button10.UseVisualStyleBackColor = true;
+            dataGridView2.AllowUserToOrderColumns = true;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(0, 73);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 62;
+            dataGridView2.Size = new Size(898, 446);
+            dataGridView2.TabIndex = 3;
             // 
-            // dataGridView3
+            // tpSales
             // 
-            dataGridView3.AllowUserToOrderColumns = true;
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Dock = DockStyle.Bottom;
-            dataGridView3.Location = new Point(3, 87);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.RowHeadersWidth = 62;
-            dataGridView3.Size = new Size(895, 516);
-            dataGridView3.TabIndex = 4;
+            tpSales.Controls.Add(button13);
+            tpSales.Controls.Add(label5);
+            tpSales.Controls.Add(dataGridView3);
+            tpSales.Location = new Point(4, 5);
+            tpSales.Name = "tpSales";
+            tpSales.Padding = new Padding(3);
+            tpSales.Size = new Size(901, 635);
+            tpSales.TabIndex = 3;
+            tpSales.Text = "Revenue";
+            tpSales.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            button13.Location = new Point(786, 47);
+            button13.Name = "button13";
+            button13.Size = new Size(112, 34);
+            button13.TabIndex = 4;
+            button13.Text = "Refresh";
+            button13.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -415,44 +449,16 @@
             label5.TabIndex = 5;
             label5.Text = "Total Revenue";
             // 
-            // button13
+            // dataGridView3
             // 
-            button13.Location = new Point(786, 47);
-            button13.Name = "button13";
-            button13.Size = new Size(112, 34);
-            button13.TabIndex = 4;
-            button13.Text = "Refresh";
-            button13.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label6.Location = new Point(341, 17);
-            label6.Name = "label6";
-            label6.Size = new Size(149, 38);
-            label6.TabIndex = 7;
-            label6.Text = "Users Info";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label7.Location = new Point(341, 3);
-            label7.Name = "label7";
-            label7.Size = new Size(139, 38);
-            label7.TabIndex = 8;
-            label7.Text = "Bookings";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label8.Location = new Point(330, 17);
-            label8.Name = "label8";
-            label8.Size = new Size(156, 38);
-            label8.TabIndex = 13;
-            label8.Text = "Magazines";
+            dataGridView3.AllowUserToOrderColumns = true;
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Dock = DockStyle.Bottom;
+            dataGridView3.Location = new Point(3, 116);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowHeadersWidth = 62;
+            dataGridView3.Size = new Size(895, 516);
+            dataGridView3.TabIndex = 4;
             // 
             // Admin
             // 
@@ -476,9 +482,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tpUsers.ResumeLayout(false);
             tpUsers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             tpSales.ResumeLayout(false);
             tpSales.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
         }

@@ -49,7 +49,22 @@ namespace SIPS.UI
 
         private void button6_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectedTab = tpUsers;
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tpInventory;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tpOrders;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tpSales;
         }
     }
 }
