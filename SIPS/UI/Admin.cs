@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIPS.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -66,5 +67,43 @@ namespace SIPS.UI
         {
             tabControl1.SelectedTab = tpSales;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. We must convert the Price and Stock from Text into real Numbers for the database
+                decimal price = Convert.ToDecimal(textBox3.Text);
+                int stock = Convert.ToInt32(textBox4.Text);
+
+                // 2. Create the connection to your Magazine backend
+                MagazineRepository magRepo = new MagazineRepository();
+
+                // 3. Pass the data to the backend!
+                bool success = magRepo.AddMagazine(textBox1.Text, textBox2.Text, price, stock);
+
+                // 4. Show the result
+                if (success)
+                {
+                    MessageBox.Show("Magazine added to inventory successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Optional: Clear the textboxes so they can quickly type the next one
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Database Error: Could not save the magazine.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (FormatException)
+            {
+                // Layer 1 Security: If they type "Five" instead of "5" in the price box, this catches it!
+                MessageBox.Show("Please enter valid numbers for Price and Stock.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }

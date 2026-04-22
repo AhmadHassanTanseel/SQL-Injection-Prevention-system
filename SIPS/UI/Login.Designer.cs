@@ -53,6 +53,7 @@
             textBox2.Size = new Size(283, 31);
             textBox2.TabIndex = 1;
             textBox2.UseSystemPasswordChar = true;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label1
             // 

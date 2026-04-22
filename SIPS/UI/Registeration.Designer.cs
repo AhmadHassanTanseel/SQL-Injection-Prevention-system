@@ -209,6 +209,7 @@
             Name = "Registeration";
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
+            Load += Registeration_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

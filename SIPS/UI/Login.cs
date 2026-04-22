@@ -1,5 +1,5 @@
 using SIPS.UI;
-
+using SIPS.DAL;
 namespace SIPS
 {
     public partial class Login : Form
@@ -28,29 +28,40 @@ namespace SIPS
 
         private void button1_Click(object sender, EventArgs e)
         {
+          
+            // 1. Ask the backend to check the email and password
+            SIPS.DAL.UserRepository userRepo = new SIPS.DAL.UserRepository();
 
-            string username = textBox1.Text;
-            string password = textBox2.Text;
-            // For right now, we will hardcode the admin password just to test the connection
-            if (textBox1.Text == "admin" && textBox2.Text == "admin123")
+            // We use .Trim() and .ToLower() to prevent invisible spaces and capitalization errors!
+            string role = userRepo.AuthenticateUser(textBox1.Text.Trim().ToLower(), textBox2.Text);
+
+            // 2. Strict Routing Logic (It will ONLY do one of these three things)
+            // Change your if statements in Login.cs to this:
+            if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase))
             {
-                // 1. Create a new copy of your Admin form
                 Admin adminForm = new Admin();
-
-                // 2. Show the Admin form
                 adminForm.Show();
-
-                // 3. Hide this Login form
+                this.Hide();
+            }
+            else if (string.Equals(role, "Customer", StringComparison.OrdinalIgnoreCase))
+            {
+                Customers customerForm = new Customers();
+                customerForm.Show();
                 this.Hide();
             }
             else
             {
-                // If they type the wrong password, show an error!
-                MessageBox.Show("Invalid username or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // If it gets here, it shows the error and STOPS. It will not open a dashboard.
+                MessageBox.Show("Invalid Email or Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
