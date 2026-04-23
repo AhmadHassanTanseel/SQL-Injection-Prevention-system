@@ -75,6 +75,8 @@
             button13 = new Button();
             label5 = new Label();
             dataGridView3 = new DataGridView();
+            label14 = new Label();
+            lblTotalRevenue = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -90,6 +92,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label14);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button5);
@@ -534,6 +537,7 @@
             // 
             // tpSales
             // 
+            tpSales.Controls.Add(lblTotalRevenue);
             tpSales.Controls.Add(button13);
             tpSales.Controls.Add(label5);
             tpSales.Controls.Add(dataGridView3);
@@ -553,6 +557,7 @@
             button13.TabIndex = 4;
             button13.Text = "Refresh";
             button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // label5
             // 
@@ -575,6 +580,23 @@
             dataGridView3.Size = new Size(895, 516);
             dataGridView3.TabIndex = 4;
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(0, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(69, 25);
+            label14.TabIndex = 4;
+            label14.Text = "label14";
+            // 
+            // lblTotalRevenue
+            // 
+            lblTotalRevenue.AutoSize = true;
+            lblTotalRevenue.Location = new Point(381, 75);
+            lblTotalRevenue.Name = "lblTotalRevenue";
+            lblTotalRevenue.Size = new Size(0, 25);
+            lblTotalRevenue.TabIndex = 6;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -587,6 +609,7 @@
             Text = "Admin";
             Load += Admin_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tpInventory.ResumeLayout(false);
@@ -654,5 +677,7 @@
         private TextBox txtUserAddress;
         private TextBox txtUserPass;
         private TextBox txtUserEmail;
+        private Label label14;
+        private Label lblTotalRevenue;
     }
 }

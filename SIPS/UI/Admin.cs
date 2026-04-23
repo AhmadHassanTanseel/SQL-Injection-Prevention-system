@@ -73,6 +73,28 @@ namespace SIPS.UI
             }
         }
 
+        private void LoadRevenueData()
+        {
+            DAL.BookingRepository repo = new DAL.BookingRepository();
+
+            // 1. Get the big total
+            decimal total = repo.GetTotalRevenue();
+            // Format it as currency (e.g., "Total: $1,250.00")
+            lblTotalRevenue.Text = "Total Revenue: " + total.ToString("C");
+
+            // 2. Show the history in the grid
+            // We can use the GetBookings method we already made!
+            dataGridView3.DataSource = repo.GetBookings();
+
+            // 3. UI Polish: Only show relevant columns for sales
+            if (dataGridView3.Columns.Count > 0)
+            {
+                // Highlight 'Approved' rows or hide internal IDs if you want
+                if (dataGridView3.Columns["Amount"] != null)
+                    dataGridView3.Columns["Amount"].DefaultCellStyle.Format = "C";
+            }
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -124,6 +146,7 @@ namespace SIPS.UI
         private void button5_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tpSales;
+            LoadRevenueData();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -413,6 +436,12 @@ namespace SIPS.UI
                     LoadBookings();
                 }
             }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            LoadRevenueData();
+            MessageBox.Show("Financial records updated!");
         }
     }
 }
