@@ -33,6 +33,30 @@ namespace SIPS.UI
             }
         }
 
+        private void LoadUsers()
+        {
+            try
+            {
+                UserRepository repo = new UserRepository();
+                DataTable dt = repo.GetAllUsers();
+
+                if (dt.Rows.Count > 0)
+                {
+                    dataGridView2.DataSource = dt;
+                    // This ensures the grid actually draws the columns
+                    dataGridView2.AutoGenerateColumns = true;
+                }
+                else
+                {
+                    MessageBox.Show("Database connected, but the Users table is empty!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading users: " + ex.Message);
+            }
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -66,6 +90,8 @@ namespace SIPS.UI
         private void button6_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tpUsers;
+
+            LoadUsers();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -195,6 +221,84 @@ namespace SIPS.UI
                     MessageBox.Show("Update Error: " + ex.Message);
                 }
             }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.CurrentRow != null)
+            {
+                string email = dataGridView2.CurrentRow.Cells["Email"].Value.ToString();
+
+                var confirm = MessageBox.Show($"Delete user {email}?", "SIPS Security", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    if (new UserRepository().DeleteUser(email))
+                    {
+                        MessageBox.Show("User removed.");
+                        LoadUsers(); // This refreshes the grid
+                    }
+                }
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            //if (dataGridView2.CurrentRow == null) return;
+
+            //string email = dataGridView2.CurrentRow.Cells["Email"].Value.ToString();
+            //// Assuming you have a txtNewName and txtNewRole textbox
+            //string name = txtUserName.Text;
+            //string role = cmbRole.Text;
+
+            //UserRepository repo = new UserRepository();
+            //if (repo.UpdateUser(email, name, role))
+            //{
+            //    MessageBox.Show("User updated!");
+            //    LoadUsers();
+            //}
+        }
+
+        private void dataGridView2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Safety check: RowIndex 0 or higher means it's a data row, not the header
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    var row = dataGridView2.Rows[e.RowIndex];
+
+                    // 1. Extract the values from the grid row
+                    // Note: Ensure these "ColumnNames" match your pgAdmin columns exactly!
+                    string email = row.Cells["Email"].Value.ToString();
+                    string name = row.Cells["Name"].Value.ToString();
+                    string role = row.Cells["Role"].Value.ToString();
+
+                    // 2. Push to Database via Repository
+                    UserRepository repo = new UserRepository();
+                    if (repo.UpdateUser(email, name, role))
+                    {
+                        // We don't need a MessageBox for every edit (it gets annoying).
+                        // Just change the form text or a status label to show it saved.
+                        this.Text = "SIPS Admin - Last saved: " + DateTime.Now.ToShortTimeString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // If the user types something invalid, we catch it here
+                    MessageBox.Show("Update failed. Please ensure Email, Name, and Role are filled.");
+                }
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

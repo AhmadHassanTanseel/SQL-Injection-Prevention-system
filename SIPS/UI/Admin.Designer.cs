@@ -65,6 +65,16 @@
             button13 = new Button();
             label5 = new Label();
             dataGridView3 = new DataGridView();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            txtUserName = new TextBox();
+            txtUserEmail = new TextBox();
+            txtUserPass = new TextBox();
+            this.txtUserAddress = new TextBox();
+            cmbUserRole = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -194,15 +204,16 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label8.Location = new Point(330, 17);
+            label8.Location = new Point(428, -5);
             label8.Name = "label8";
             label8.Size = new Size(156, 38);
             label8.TabIndex = 13;
             label8.Text = "Magazines";
+            label8.Click += label8_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(330, 527);
+            button3.Location = new Point(591, 567);
             button3.Name = "button3";
             button3.Size = new Size(112, 34);
             button3.TabIndex = 12;
@@ -212,7 +223,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(172, 527);
+            button2.Location = new Point(339, 567);
             button2.Name = "button2";
             button2.Size = new Size(112, 34);
             button2.TabIndex = 11;
@@ -222,7 +233,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(6, 527);
+            button1.Location = new Point(114, 567);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 10;
@@ -232,36 +243,36 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(49, 428);
+            textBox4.Location = new Point(746, 100);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(342, 31);
+            textBox4.Size = new Size(149, 31);
             textBox4.TabIndex = 9;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(49, 313);
+            textBox3.Location = new Point(575, 100);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(342, 31);
+            textBox3.Size = new Size(142, 31);
             textBox3.TabIndex = 8;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(49, 213);
+            textBox2.Location = new Point(310, 100);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(342, 31);
+            textBox2.Size = new Size(231, 31);
             textBox2.TabIndex = 7;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(49, 117);
+            textBox1.Location = new Point(19, 100);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(342, 31);
+            textBox1.Size = new Size(265, 31);
             textBox1.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(159, 366);
+            label4.Location = new Point(755, 55);
             label4.Name = "label4";
             label4.Size = new Size(128, 25);
             label4.TabIndex = 5;
@@ -271,7 +282,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(172, 165);
+            label3.Location = new Point(397, 55);
             label3.Name = "label3";
             label3.Size = new Size(84, 25);
             label3.TabIndex = 4;
@@ -281,7 +292,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(191, 268);
+            label2.Location = new Point(619, 55);
             label2.Name = "label2";
             label2.Size = new Size(49, 25);
             label2.TabIndex = 3;
@@ -291,7 +302,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(159, 78);
+            label1.Location = new Point(87, 55);
             label1.Name = "label1";
             label1.Size = new Size(125, 25);
             label1.TabIndex = 2;
@@ -301,10 +312,10 @@
             // dgvMagazines
             // 
             dgvMagazines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMagazines.Location = new Point(449, 78);
+            dgvMagazines.Location = new Point(16, 137);
             dgvMagazines.Name = "dgvMagazines";
             dgvMagazines.RowHeadersWidth = 62;
-            dgvMagazines.Size = new Size(449, 525);
+            dgvMagazines.Size = new Size(879, 404);
             dgvMagazines.TabIndex = 1;
             dgvMagazines.CellClick += dgvMagazines_CellClick;
             // 
@@ -361,6 +372,16 @@
             // 
             // tpUsers
             // 
+            tpUsers.Controls.Add(cmbUserRole);
+            tpUsers.Controls.Add(this.txtUserAddress);
+            tpUsers.Controls.Add(txtUserPass);
+            tpUsers.Controls.Add(txtUserEmail);
+            tpUsers.Controls.Add(txtUserName);
+            tpUsers.Controls.Add(label13);
+            tpUsers.Controls.Add(label12);
+            tpUsers.Controls.Add(label11);
+            tpUsers.Controls.Add(label10);
+            tpUsers.Controls.Add(label9);
             tpUsers.Controls.Add(label6);
             tpUsers.Controls.Add(button10);
             tpUsers.Controls.Add(button11);
@@ -386,40 +407,44 @@
             // 
             // button10
             // 
-            button10.Location = new Point(23, 547);
+            button10.Location = new Point(23, 584);
             button10.Name = "button10";
             button10.Size = new Size(253, 34);
             button10.TabIndex = 6;
             button10.Text = "Add User";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // button11
             // 
-            button11.Location = new Point(332, 547);
+            button11.Location = new Point(331, 584);
             button11.Name = "button11";
             button11.Size = new Size(253, 34);
             button11.TabIndex = 5;
             button11.Text = "Update Info";
             button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
             // 
             // button12
             // 
-            button12.Location = new Point(640, 547);
+            button12.Location = new Point(640, 584);
             button12.Name = "button12";
             button12.Size = new Size(253, 34);
             button12.TabIndex = 4;
             button12.Text = "Delete";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // dataGridView2
             // 
             dataGridView2.AllowUserToOrderColumns = true;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(0, 73);
+            dataGridView2.Location = new Point(0, 217);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.Size = new Size(898, 446);
+            dataGridView2.Size = new Size(898, 348);
             dataGridView2.TabIndex = 3;
+            dataGridView2.CellValueChanged += dataGridView2_CellValueChanged;
             // 
             // tpSales
             // 
@@ -463,6 +488,87 @@
             dataGridView3.RowHeadersWidth = 62;
             dataGridView3.Size = new Size(895, 516);
             dataGridView3.TabIndex = 4;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(23, 84);
+            label9.Name = "label9";
+            label9.Size = new Size(59, 25);
+            label9.TabIndex = 8;
+            label9.Text = "Name";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(23, 189);
+            label10.Name = "label10";
+            label10.Size = new Size(77, 25);
+            label10.TabIndex = 9;
+            label10.Text = "Address";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(411, 133);
+            label11.Name = "label11";
+            label11.Size = new Size(87, 25);
+            label11.TabIndex = 10;
+            label11.Text = "Password";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(23, 133);
+            label12.Name = "label12";
+            label12.Size = new Size(46, 25);
+            label12.TabIndex = 11;
+            label12.Text = "Role";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(444, 84);
+            label13.Name = "label13";
+            label13.Size = new Size(54, 25);
+            label13.TabIndex = 12;
+            label13.Text = "Email";
+            // 
+            // txtUserName
+            // 
+            txtUserName.Location = new Point(88, 78);
+            txtUserName.Name = "txtUserName";
+            txtUserName.Size = new Size(350, 31);
+            txtUserName.TabIndex = 13;
+            // 
+            // txtUserEmail
+            // 
+            txtUserEmail.Location = new Point(504, 78);
+            txtUserEmail.Name = "txtUserEmail";
+            txtUserEmail.Size = new Size(377, 31);
+            txtUserEmail.TabIndex = 14;
+            // 
+            // txtUserPass
+            // 
+            txtUserPass.Location = new Point(504, 130);
+            txtUserPass.Name = "txtUserPass";
+            txtUserPass.Size = new Size(377, 31);
+            txtUserPass.TabIndex = 15;
+            // 
+            // txtUserAddress
+            // 
+            this.txtUserAddress.Location = new Point(106, 180);
+            this.txtUserAddress.Name = "txtUserAddress";
+            this.txtUserAddress.Size = new Size(775, 31);
+            this.txtUserAddress.TabIndex = 16;
+            // 
+            // cmbUserRole
+            // 
+            cmbUserRole.FormattingEnabled = true;
+            cmbUserRole.Location = new Point(88, 128);
+            cmbUserRole.Name = "cmbUserRole";
+            cmbUserRole.Size = new Size(317, 33);
+            cmbUserRole.TabIndex = 17;
             // 
             // Admin
             // 
@@ -532,5 +638,15 @@
         private Label label8;
         private Label label7;
         private Label label6;
+        private Label label13;
+        private Label label12;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private TextBox txtUserName;
+        private ComboBox cmbUserRole;
+        private TextBox textBox8;
+        private TextBox txtUserPass;
+        private TextBox txtUserEmail;
     }
 }

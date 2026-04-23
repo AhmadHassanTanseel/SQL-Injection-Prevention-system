@@ -98,21 +98,96 @@ namespace SIPS.DAL
         public DataTable GetAllUsers()
         {
             DataTable dt = new DataTable();
-            using (NpgsqlConnection conn = dbManager.GetConnection())
+            try
             {
-                conn.Open();
-                // Layer 3 Security Note: We select Name, Email, and Role. 
-                // We do NOT select the Password hash for the Admin grid for better privacy.
-                string query = "SELECT username AS Name, email AS Email, role AS Role, signature AS Signature FROM users ORDER BY username ASC";
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                using (NpgsqlConnection conn = dbManager.GetConnection())
                 {
-                    using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd))
+                    conn.Open();
+                    // FIX: Changed 'username' to 'name' to match your pgAdmin screenshot
+                    string query = "SELECT name AS Name, email AS Email, role AS Role, signature AS Signature FROM users ORDER BY name ASC";
+
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                     {
-                        da.Fill(dt);
+                        using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // For debugging purposes
+                Console.WriteLine("User Load Error: " + ex.Message);
+            }
             return dt;
+        }
+
+        // 1. ADD USER
+        public bool AddUser(string name, string email, string password, string role, string signature)
+        {
+            try
+            {
+                using (NpgsqlConnection conn = dbManager.GetConnection())
+                {
+                    conn.Open();
+                    // Layer 2: Parameterized (Security)
+                    string query = "INSERT INTO users (username, email, password, role, signature) VALUES (@n, @e, @p, @r, @s)";
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@n", name.Trim());
+                        cmd.Parameters.AddWithValue("@e", email.Trim());
+                        cmd.Parameters.AddWithValue("@p", password); // Should be hashed in Layer 3
+                        cmd.Parameters.AddWithValue("@r", role);
+                        cmd.Parameters.AddWithValue("@s", signature);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch { return false; }
+        }
+
+        // 2. UPDATE USER
+        public bool UpdateUser(string originalEmail, string newName, string newRole)
+        {
+            try
+            {
+                using (NpgsqlConnection conn = dbManager.GetConnection())
+                {
+                    conn.Open();
+                    string query = "UPDATE users SET username=@n, role=@r WHERE email=@e";
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@n", newName.Trim());
+                        cmd.Parameters.AddWithValue("@r", newRole);
+                        cmd.Parameters.AddWithValue("@e", originalEmail);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch { return false; }
+        }
+
+        // 3. DELETE USER
+        public bool DeleteUser(string email)
+        {
+            try
+            {
+                using (NpgsqlConnection conn = dbManager.GetConnection())
+                {
+                    conn.Open();
+                    string query = "DELETE FROM users WHERE email=@e";
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@e", email);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch { return false; }
         }
     }
 }
