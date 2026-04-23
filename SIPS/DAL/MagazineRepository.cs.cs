@@ -67,10 +67,8 @@ namespace SIPS.DAL
             }
             return dt;
         }
-    }
-
-
-    public bool DeleteMagazine(int magazineId)
+    
+        public bool DeleteMagazine(int magazineId)
         {
             try
             {
@@ -92,6 +90,33 @@ namespace SIPS.DAL
                 // Silently fail or log as we discussed for security
                 return false;
             }
+        }
+
+
+        public bool UpdateMagazine(int id, string title, string category, decimal price, int stock)
+        {
+            try
+            {
+                using (NpgsqlConnection conn = dbManager.GetConnection())
+                {
+                    conn.Open();
+                    // LAYER 2: Parameterized Query (Prevents SQL Injection during updates)
+                    string query = "UPDATE magazines SET title=@t, category=@c, price=@p, stock=@s WHERE magazineid=@id";
+
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@t", title.Trim());
+                        cmd.Parameters.AddWithValue("@c", category.Trim());
+                        cmd.Parameters.AddWithValue("@p", price);
+                        cmd.Parameters.AddWithValue("@s", stock);
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch { return false; }
         }
     }
 }

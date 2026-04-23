@@ -129,33 +129,71 @@ namespace SIPS.UI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // LAYER 1: Validation - Ensure a row is selected
-            // 1. Safety Check: If the grid is empty or no row is clicked, stop here!
-            if (dgvMagazines.CurrentRow == null || dgvMagazines.Rows.Count == 0)
+            if (dgvMagazines.CurrentRow == null)
             {
-                MessageBox.Show("Please add or select a magazine first.", "SIPS Security");
+                MessageBox.Show("Please select a magazine from the list first.");
                 return;
             }
 
             try
             {
-                // 2. Get the ID from the very first cell on the left
-                int id = Convert.ToInt32(dgvMagazines.CurrentRow.Cells["id"].Value);
+                /// You MUST have ["magazineid"] between Cells and Value
+                int id = Convert.ToInt32(dgvMagazines.CurrentRow.Cells["magazineid"].Value);
 
-                var result = MessageBox.Show("Are you sure?", "Confirm Delete", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                if (MessageBox.Show("Delete this magazine?", "SIPS Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     MagazineRepository repo = new MagazineRepository();
                     if (repo.DeleteMagazine(id))
                     {
-                        MessageBox.Show("Deleted!");
-                        LoadMagazines(); // This will refresh the grid automatically
+                        MessageBox.Show("Deleted Successfully!");
+                        LoadMagazines();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: Make sure you clicked a valid row.");
+                // This will show the REAL error if it happens again
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void dgvMagazines_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvMagazines.CurrentRow != null)
+            {
+                // This fills your textboxes automatically when you click a row
+                textBox1.Text = dgvMagazines.CurrentRow.Cells["Title"].Value.ToString();
+                textBox2.Text = dgvMagazines.CurrentRow.Cells["Category"].Value.ToString();
+                textBox3.Text = dgvMagazines.CurrentRow.Cells["Price"].Value.ToString();
+                textBox4.Text = dgvMagazines.CurrentRow.Cells["Stock"].Value.ToString();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dgvMagazines.CurrentRow != null)
+            {
+                try
+                {
+                    // Added here as well!
+                    int id = Convert.ToInt32(dgvMagazines.CurrentRow.Cells["magazineid"].Value);
+
+                    string title = textBox1.Text;
+                    string category = textBox2.Text;
+                    decimal price = Convert.ToDecimal(textBox3.Text);
+                    int stock = Convert.ToInt32(textBox4.Text);
+
+                    MagazineRepository repo = new MagazineRepository();
+                    if (repo.UpdateMagazine(id, title, category, price, stock))
+                    {
+                        MessageBox.Show("Updated!");
+                        LoadMagazines();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Update Error: " + ex.Message);
+                }
             }
         }
     }

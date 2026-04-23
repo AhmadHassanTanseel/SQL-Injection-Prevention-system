@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Npgsql;
+using System;
+using System.Data;
 using System.Security.Cryptography;
 using System.Text;
-using Npgsql;
 
 namespace SIPS.DAL
 {
@@ -92,6 +93,26 @@ namespace SIPS.DAL
 
                 return null;
             }
+        }
+
+        public DataTable GetAllUsers()
+        {
+            DataTable dt = new DataTable();
+            using (NpgsqlConnection conn = dbManager.GetConnection())
+            {
+                conn.Open();
+                // Layer 3 Security Note: We select Name, Email, and Role. 
+                // We do NOT select the Password hash for the Admin grid for better privacy.
+                string query = "SELECT username AS Name, email AS Email, role AS Role, signature AS Signature FROM users ORDER BY username ASC";
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                {
+                    using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            return dt;
         }
     }
 }
