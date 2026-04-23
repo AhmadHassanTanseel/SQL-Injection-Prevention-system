@@ -225,19 +225,22 @@ namespace SIPS.UI
 
         private void button12_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.CurrentRow != null)
+            if (string.IsNullOrWhiteSpace(txtUserEmail.Text)) return;
+
+            var confirm = MessageBox.Show($"Delete {txtUserName.Text}?", "SIPS Security", MessageBoxButtons.YesNo);
+
+            if (confirm == DialogResult.Yes)
             {
-                string email = dataGridView2.CurrentRow.Cells["Email"].Value.ToString();
-
-                var confirm = MessageBox.Show($"Delete user {email}?", "SIPS Security", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (confirm == DialogResult.Yes)
+                UserRepository repo = new UserRepository();
+                if (repo.DeleteUser(txtUserEmail.Text))
                 {
-                    if (new UserRepository().DeleteUser(email))
-                    {
-                        MessageBox.Show("User removed.");
-                        LoadUsers(); // This refreshes the grid
-                    }
+                    MessageBox.Show("User deleted.");
+                    LoadUsers();
+                    // Clear the boxes
+                    txtUserName.Clear();
+                    txtUserEmail.Clear();
+                    txtUserAddress.Clear();
+                    txtUserPass.Clear();
                 }
             }
         }
@@ -257,6 +260,20 @@ namespace SIPS.UI
             //    MessageBox.Show("User updated!");
             //    LoadUsers();
             //}
+
+            if (string.IsNullOrWhiteSpace(txtUserEmail.Text))
+            {
+                MessageBox.Show("Please select a user from the grid first.");
+                return;
+            }
+
+            UserRepository repo = new UserRepository();
+            // Updating based on the Email (ID)
+            if (repo.UpdateUser(txtUserEmail.Text, txtUserName.Text, cmbUserRole.Text, txtUserAddress.Text))
+            {
+                MessageBox.Show("Update successful!");
+                LoadUsers();
+            }
         }
 
         private void dataGridView2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -276,11 +293,10 @@ namespace SIPS.UI
 
                     // 2. Push to Database via Repository
                     UserRepository repo = new UserRepository();
-                    if (repo.UpdateUser(email, name, role))
+                    if (repo.UpdateUser(txtUserEmail.Text, txtUserName.Text, cmbUserRole.Text, txtUserAddress.Text))
                     {
-                        // We don't need a MessageBox for every edit (it gets annoying).
-                        // Just change the form text or a status label to show it saved.
-                        this.Text = "SIPS Admin - Last saved: " + DateTime.Now.ToShortTimeString();
+                        MessageBox.Show("Update successful!");
+                        LoadUsers();
                     }
                 }
                 catch (Exception ex)
@@ -293,10 +309,58 @@ namespace SIPS.UI
 
         private void button10_Click(object sender, EventArgs e)
         {
+            //UserRepository repo = new UserRepository();
+            //// We send Name, Email, Password, Role, "N/A" for Signature, and Address
+            //if (repo.AddUser(txtUserName.Text, txtUserEmail.Text, txtUserPass.Text, cmbUserRole.Text, "N/A", txtUserAddress.Text))
+            //{
+            //    MessageBox.Show("User added successfully!");
+            //    LoadUsers();
+            //}
 
+            // 1. Validation: Don't let them add someone without an email
+    if (string.IsNullOrWhiteSpace(txtUserEmail.Text))
+    {
+        MessageBox.Show("Email is required!");
+        return;
+    }
+
+    UserRepository repo = new UserRepository();
+
+    // 2. Calling the method with 6 arguments in this EXACT order:
+    // (name, email, password, role, signature, address)
+    if (repo.AddUser(txtUserName.Text, 
+                     txtUserEmail.Text, 
+                     txtUserPass.Text, 
+                     cmbUserRole.Text, 
+                     "N/A", 
+                     txtUserAddress.Text)) 
+    {
+        MessageBox.Show("User added successfully!");
+        LoadUsers(); // Refresh the grid
+    }
         }
 
         private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView2.CurrentRow != null && e.RowIndex >= 0)
+            {
+                // Use the Column Names we defined in the GetAllUsers() query
+                txtUserName.Text = dataGridView2.CurrentRow.Cells["Name"].Value.ToString();
+                txtUserEmail.Text = dataGridView2.CurrentRow.Cells["Email"].Value.ToString();
+                txtUserAddress.Text = dataGridView2.CurrentRow.Cells["Address"].Value.ToString();
+                cmbUserRole.Text = dataGridView2.CurrentRow.Cells["Role"].Value.ToString();
+
+                // Clear password for security
+                txtUserPass.Clear();
+            }
+        }
+
+        private void tpUsers_Click(object sender, EventArgs e)
         {
 
         }

@@ -56,6 +56,16 @@
             button8 = new Button();
             dataGridView1 = new DataGridView();
             tpUsers = new TabPage();
+            cmbUserRole = new ComboBox();
+            txtUserAddress = new TextBox();
+            txtUserPass = new TextBox();
+            txtUserEmail = new TextBox();
+            txtUserName = new TextBox();
+            label13 = new Label();
+            label12 = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
             label6 = new Label();
             button10 = new Button();
             button11 = new Button();
@@ -65,16 +75,6 @@
             button13 = new Button();
             label5 = new Label();
             dataGridView3 = new DataGridView();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
-            label13 = new Label();
-            txtUserName = new TextBox();
-            txtUserEmail = new TextBox();
-            txtUserPass = new TextBox();
-            this.txtUserAddress = new TextBox();
-            cmbUserRole = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -373,7 +373,7 @@
             // tpUsers
             // 
             tpUsers.Controls.Add(cmbUserRole);
-            tpUsers.Controls.Add(this.txtUserAddress);
+            tpUsers.Controls.Add(txtUserAddress);
             tpUsers.Controls.Add(txtUserPass);
             tpUsers.Controls.Add(txtUserEmail);
             tpUsers.Controls.Add(txtUserName);
@@ -394,6 +394,89 @@
             tpUsers.TabIndex = 2;
             tpUsers.Text = "Users Info";
             tpUsers.UseVisualStyleBackColor = true;
+            tpUsers.Click += tpUsers_Click;
+            // 
+            // cmbUserRole
+            // 
+            cmbUserRole.FormattingEnabled = true;
+            cmbUserRole.Items.AddRange(new object[] { "Customer", "Admin" });
+            cmbUserRole.Location = new Point(88, 128);
+            cmbUserRole.Name = "cmbUserRole";
+            cmbUserRole.Size = new Size(317, 33);
+            cmbUserRole.TabIndex = 17;
+            // 
+            // txtUserAddress
+            // 
+            txtUserAddress.Location = new Point(106, 180);
+            txtUserAddress.Name = "txtUserAddress";
+            txtUserAddress.Size = new Size(775, 31);
+            txtUserAddress.TabIndex = 16;
+            // 
+            // txtUserPass
+            // 
+            txtUserPass.Location = new Point(504, 130);
+            txtUserPass.Name = "txtUserPass";
+            txtUserPass.Size = new Size(377, 31);
+            txtUserPass.TabIndex = 15;
+            // 
+            // txtUserEmail
+            // 
+            txtUserEmail.Location = new Point(504, 78);
+            txtUserEmail.Name = "txtUserEmail";
+            txtUserEmail.Size = new Size(377, 31);
+            txtUserEmail.TabIndex = 14;
+            // 
+            // txtUserName
+            // 
+            txtUserName.Location = new Point(88, 78);
+            txtUserName.Name = "txtUserName";
+            txtUserName.Size = new Size(350, 31);
+            txtUserName.TabIndex = 13;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(444, 84);
+            label13.Name = "label13";
+            label13.Size = new Size(54, 25);
+            label13.TabIndex = 12;
+            label13.Text = "Email";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(23, 133);
+            label12.Name = "label12";
+            label12.Size = new Size(46, 25);
+            label12.TabIndex = 11;
+            label12.Text = "Role";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(411, 133);
+            label11.Name = "label11";
+            label11.Size = new Size(87, 25);
+            label11.TabIndex = 10;
+            label11.Text = "Password";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(23, 189);
+            label10.Name = "label10";
+            label10.Size = new Size(77, 25);
+            label10.TabIndex = 9;
+            label10.Text = "Address";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(23, 84);
+            label9.Name = "label9";
+            label9.Size = new Size(59, 25);
+            label9.TabIndex = 8;
+            label9.Text = "Name";
             // 
             // label6
             // 
@@ -444,6 +527,7 @@
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.Size = new Size(898, 348);
             dataGridView2.TabIndex = 3;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.CellValueChanged += dataGridView2_CellValueChanged;
             // 
             // tpSales
@@ -488,87 +572,6 @@
             dataGridView3.RowHeadersWidth = 62;
             dataGridView3.Size = new Size(895, 516);
             dataGridView3.TabIndex = 4;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(23, 84);
-            label9.Name = "label9";
-            label9.Size = new Size(59, 25);
-            label9.TabIndex = 8;
-            label9.Text = "Name";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(23, 189);
-            label10.Name = "label10";
-            label10.Size = new Size(77, 25);
-            label10.TabIndex = 9;
-            label10.Text = "Address";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(411, 133);
-            label11.Name = "label11";
-            label11.Size = new Size(87, 25);
-            label11.TabIndex = 10;
-            label11.Text = "Password";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(23, 133);
-            label12.Name = "label12";
-            label12.Size = new Size(46, 25);
-            label12.TabIndex = 11;
-            label12.Text = "Role";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(444, 84);
-            label13.Name = "label13";
-            label13.Size = new Size(54, 25);
-            label13.TabIndex = 12;
-            label13.Text = "Email";
-            // 
-            // txtUserName
-            // 
-            txtUserName.Location = new Point(88, 78);
-            txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(350, 31);
-            txtUserName.TabIndex = 13;
-            // 
-            // txtUserEmail
-            // 
-            txtUserEmail.Location = new Point(504, 78);
-            txtUserEmail.Name = "txtUserEmail";
-            txtUserEmail.Size = new Size(377, 31);
-            txtUserEmail.TabIndex = 14;
-            // 
-            // txtUserPass
-            // 
-            txtUserPass.Location = new Point(504, 130);
-            txtUserPass.Name = "txtUserPass";
-            txtUserPass.Size = new Size(377, 31);
-            txtUserPass.TabIndex = 15;
-            // 
-            // txtUserAddress
-            // 
-            this.txtUserAddress.Location = new Point(106, 180);
-            this.txtUserAddress.Name = "txtUserAddress";
-            this.txtUserAddress.Size = new Size(775, 31);
-            this.txtUserAddress.TabIndex = 16;
-            // 
-            // cmbUserRole
-            // 
-            cmbUserRole.FormattingEnabled = true;
-            cmbUserRole.Location = new Point(88, 128);
-            cmbUserRole.Name = "cmbUserRole";
-            cmbUserRole.Size = new Size(317, 33);
-            cmbUserRole.TabIndex = 17;
             // 
             // Admin
             // 

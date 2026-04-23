@@ -104,7 +104,9 @@ namespace SIPS.DAL
                 {
                     conn.Open();
                     // FIX: Changed 'username' to 'name' to match your pgAdmin screenshot
-                    string query = "SELECT name AS Name, email AS Email, role AS Role, signature AS Signature FROM users ORDER BY name ASC";
+                    //string query = "SELECT name AS Name, email AS Email, role AS Role, signature AS Signature FROM users ORDER BY name ASC";
+                    // Make sure "address AS Address" is included!
+                    string query = "SELECT name AS Name, email AS Email, role AS Role, address AS Address, signature AS Signature FROM users ORDER BY name ASC";
 
                     using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                     {
@@ -124,50 +126,112 @@ namespace SIPS.DAL
         }
 
         // 1. ADD USER
-        public bool AddUser(string name, string email, string password, string role, string signature)
+        //public bool AddUser(string name, string email, string password, string role, string signature)
+        //{
+        //    try
+        //    {
+        //        using (NpgsqlConnection conn = dbManager.GetConnection())
+        //        {
+        //            conn.Open();
+        //            // Layer 2: Parameterized (Security)
+        //            string query = "INSERT INTO users (username, email, password, role, signature) VALUES (@n, @e, @p, @r, @s)";
+        //            using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+        //            {
+        //                cmd.Parameters.AddWithValue("@n", name.Trim());
+        //                cmd.Parameters.AddWithValue("@e", email.Trim());
+        //                cmd.Parameters.AddWithValue("@p", password); // Should be hashed in Layer 3
+        //                cmd.Parameters.AddWithValue("@r", role);
+        //                cmd.Parameters.AddWithValue("@s", signature);
+        //                cmd.ExecuteNonQuery();
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //    catch { return false; }
+        //}
+
+        public bool AddUser(string name, string email, string password, string role, string signature, string address)
         {
             try
             {
                 using (NpgsqlConnection conn = dbManager.GetConnection())
                 {
                     conn.Open();
-                    // Layer 2: Parameterized (Security)
-                    string query = "INSERT INTO users (username, email, password, role, signature) VALUES (@n, @e, @p, @r, @s)";
+                    // Note: Use the column names exactly as they appear in your pgAdmin screenshot
+                    string query = "INSERT INTO users (name, email, password, role, signature, address) " +
+                                   "VALUES (@n, @e, @p, @r, @s, @a)";
+
                     using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@n", name.Trim());
-                        cmd.Parameters.AddWithValue("@e", email.Trim());
-                        cmd.Parameters.AddWithValue("@p", password); // Should be hashed in Layer 3
+                        cmd.Parameters.AddWithValue("@n", name);
+                        cmd.Parameters.AddWithValue("@e", email);
+                        cmd.Parameters.AddWithValue("@p", password); // In a real app, this should be hashed!
                         cmd.Parameters.AddWithValue("@r", role);
                         cmd.Parameters.AddWithValue("@s", signature);
+                        cmd.Parameters.AddWithValue("@a", address);
+
                         cmd.ExecuteNonQuery();
                         return true;
                     }
                 }
             }
-            catch { return false; }
+            catch (Exception ex)
+            {
+                // This helps you see the actual SQL error if it fails
+                System.Windows.Forms.MessageBox.Show("Database Error: " + ex.Message);
+                return false;
+            }
         }
 
         // 2. UPDATE USER
-        public bool UpdateUser(string originalEmail, string newName, string newRole)
+        //public bool UpdateUser(string originalEmail, string newName, string newRole)
+        //{
+        //    try
+        //    {
+        //        using (NpgsqlConnection conn = dbManager.GetConnection())
+        //        {
+        //            conn.Open();
+        //            string query = "UPDATE users SET username=@n, role=@r WHERE email=@e";
+        //            using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+        //            {
+        //                cmd.Parameters.AddWithValue("@n", newName.Trim());
+        //                cmd.Parameters.AddWithValue("@r", newRole);
+        //                cmd.Parameters.AddWithValue("@e", originalEmail);
+        //                cmd.ExecuteNonQuery();
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //    catch { return false; }
+        //}
+
+        public bool UpdateUser(string email, string name, string role, string address)
         {
             try
             {
                 using (NpgsqlConnection conn = dbManager.GetConnection())
                 {
                     conn.Open();
-                    string query = "UPDATE users SET username=@n, role=@r WHERE email=@e";
+                    // We update name, role, and address where the email matches
+                    string query = "UPDATE users SET name = @n, role = @r, address = @a WHERE email = @e";
+
                     using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@n", newName.Trim());
-                        cmd.Parameters.AddWithValue("@r", newRole);
-                        cmd.Parameters.AddWithValue("@e", originalEmail);
-                        cmd.ExecuteNonQuery();
-                        return true;
+                        cmd.Parameters.AddWithValue("@n", name);
+                        cmd.Parameters.AddWithValue("@r", role);
+                        cmd.Parameters.AddWithValue("@a", address);
+                        cmd.Parameters.AddWithValue("@e", email); // The unique key
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
                     }
                 }
             }
-            catch { return false; }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Update Error: " + ex.Message);
+                return false;
+            }
         }
 
         // 3. DELETE USER
