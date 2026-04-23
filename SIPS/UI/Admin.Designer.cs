@@ -627,6 +627,7 @@
         private Button button4;
         private Button button9;
         private Button button8;
+        //private TextBox 
         private DataGridView dataGridView1;
         private Button button11;
         private Button button12;
@@ -645,7 +646,7 @@
         private Label label9;
         private TextBox txtUserName;
         private ComboBox cmbUserRole;
-        private TextBox textBox8;
+        private TextBox txtUserAddress;
         private TextBox txtUserPass;
         private TextBox txtUserEmail;
     }
