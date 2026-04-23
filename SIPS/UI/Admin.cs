@@ -57,6 +57,22 @@ namespace SIPS.UI
             }
         }
 
+        private void LoadBookings()
+        {
+            DAL.BookingRepository repo = new DAL.BookingRepository();
+            dataGridView1.DataSource = repo.GetBookings();
+
+            if (dataGridView1.Columns.Count > 0)
+            {
+                // These MUST match the "AS" names in your SQL query
+                if (dataGridView1.Columns["ID"] != null)
+                    dataGridView1.Columns["ID"].Width = 50;
+
+                if (dataGridView1.Columns["Customer"] != null)
+                    dataGridView1.Columns["Customer"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -102,6 +118,7 @@ namespace SIPS.UI
         private void button7_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tpOrders;
+            LoadBookings();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -318,26 +335,26 @@ namespace SIPS.UI
             //}
 
             // 1. Validation: Don't let them add someone without an email
-    if (string.IsNullOrWhiteSpace(txtUserEmail.Text))
-    {
-        MessageBox.Show("Email is required!");
-        return;
-    }
+            if (string.IsNullOrWhiteSpace(txtUserEmail.Text))
+            {
+                MessageBox.Show("Email is required!");
+                return;
+            }
 
-    UserRepository repo = new UserRepository();
+            UserRepository repo = new UserRepository();
 
-    // 2. Calling the method with 6 arguments in this EXACT order:
-    // (name, email, password, role, signature, address)
-    if (repo.AddUser(txtUserName.Text, 
-                     txtUserEmail.Text, 
-                     txtUserPass.Text, 
-                     cmbUserRole.Text, 
-                     "N/A", 
-                     txtUserAddress.Text)) 
-    {
-        MessageBox.Show("User added successfully!");
-        LoadUsers(); // Refresh the grid
-    }
+            // 2. Calling the method with 6 arguments in this EXACT order:
+            // (name, email, password, role, signature, address)
+            if (repo.AddUser(txtUserName.Text,
+                             txtUserEmail.Text,
+                             txtUserPass.Text,
+                             cmbUserRole.Text,
+                             "N/A",
+                             txtUserAddress.Text))
+            {
+                MessageBox.Show("User added successfully!");
+                LoadUsers(); // Refresh the grid
+            }
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -363,6 +380,39 @@ namespace SIPS.UI
         private void tpUsers_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+                // Change 'DAL' to 'Repositories'
+                if (new SIPS.DAL.BookingRepository().ApproveBooking(id))
+                {
+                    MessageBox.Show("Booking Approved!");
+                    LoadBookings();
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                // 1. Get the Booking ID
+                // 1. Changed "BookingID" to "ID" to match our SQL alias
+                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+                // 2. Get the Magazine ID (so we can restore stock)
+                int magId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["MagazineID"].Value);
+
+                // 3. Call the new method with BOTH IDs
+                if (new SIPS.DAL.BookingRepository().CancelBooking(id, magId))
+                {
+                    MessageBox.Show("Booking Cancelled and Stock Restored.");
+                    LoadBookings();
+                }
+            }
         }
     }
 }

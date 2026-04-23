@@ -351,6 +351,7 @@
             button9.TabIndex = 4;
             button9.Text = "Approve Bookings";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
             // 
             // button8
             // 
@@ -360,6 +361,7 @@
             button8.TabIndex = 3;
             button8.Text = "Cancel Bookings";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // dataGridView1
             // 
