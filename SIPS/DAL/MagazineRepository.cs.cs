@@ -17,25 +17,26 @@ namespace SIPS.DAL
                 using (NpgsqlConnection conn = dbManager.GetConnection())
                 {
                     conn.Open();
-                    // Notice: Perfectly matches our schema columns!
+                    // Layer 2: Parameterized Query (Secure)
                     string query = "INSERT INTO Magazines (Title, Category, Price, Stock) " +
                                    "VALUES (@title, @category, @price, @stock)";
 
                     using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@title", title);
-                        cmd.Parameters.AddWithValue("@category", category);
+                        // Layer 1: Sanitization (Added .Trim() for extra safety)
+                        cmd.Parameters.AddWithValue("@title", title.Trim());
+                        cmd.Parameters.AddWithValue("@category", category.Trim());
                         cmd.Parameters.AddWithValue("@price", price);
                         cmd.Parameters.AddWithValue("@stock", stock);
 
                         cmd.ExecuteNonQuery();
-                        return true; // Success!
+                        return true;
                     }
                 }
             }
             catch
             {
-                return false; // Database error
+                return false;
             }
         }
 
@@ -65,6 +66,32 @@ namespace SIPS.DAL
                 // If it fails, it returns an empty table so your app doesn't crash
             }
             return dt;
+        }
+    }
+
+
+    public bool DeleteMagazine(int magazineId)
+        {
+            try
+            {
+                using (NpgsqlConnection conn = dbManager.GetConnection())
+                {
+                    conn.Open();
+                    // LAYER 2: Parameterized Query
+                    string query = "DELETE FROM magazines WHERE magazineid = @id";
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", magazineId);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Silently fail or log as we discussed for security
+                return false;
+            }
         }
     }
 }

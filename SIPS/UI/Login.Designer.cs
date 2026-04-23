@@ -131,7 +131,6 @@
             Controls.Add(textBox1);
             Name = "Login";
             Text = "Form1";
-            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
             PerformLayout();
         }

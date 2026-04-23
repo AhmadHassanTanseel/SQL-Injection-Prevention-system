@@ -146,7 +146,7 @@
             richTextBox1.ForeColor = SystemColors.InfoText;
             richTextBox1.Location = new Point(0, 0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(1006, 100);
+            richTextBox1.Size = new Size(905, 100);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             // 
@@ -208,6 +208,7 @@
             button3.TabIndex = 12;
             button3.Text = "Delete";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -234,7 +235,6 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(342, 31);
             textBox4.TabIndex = 9;
-           // textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox3
             // 
@@ -242,7 +242,6 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(342, 31);
             textBox3.TabIndex = 8;
-           // textBox3.TextChanged += textBox3_TextChanged;
             // 
             // textBox2
             // 
@@ -250,7 +249,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(342, 31);
             textBox2.TabIndex = 7;
-          //  textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -258,7 +256,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(342, 31);
             textBox1.TabIndex = 6;
-            //textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label4
             // 
@@ -475,7 +472,7 @@
             Controls.Add(panel1);
             Name = "Admin";
             Text = "Admin";
-            WindowState = FormWindowState.Maximized;
+            Load += Admin_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
