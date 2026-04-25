@@ -34,7 +34,6 @@
             label2 = new Label();
             button1 = new Button();
             button2 = new Button();
-            checkBox1 = new CheckBox();
             label3 = new Label();
             SuspendLayout();
             // 
@@ -95,17 +94,6 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(179, 92);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(247, 29);
-            checkBox1.TabIndex = 6;
-            checkBox1.Text = "Enable Signature Scanning";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -122,7 +110,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1178, 744);
             Controls.Add(label3);
-            Controls.Add(checkBox1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label2);
@@ -143,7 +130,6 @@
         private Label label2;
         private Button button1;
         private Button button2;
-        private CheckBox checkBox1;
         private Label label3;
     }
 }
