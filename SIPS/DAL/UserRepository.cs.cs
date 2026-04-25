@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using SIPS.Security;
 using System;
 using System.Data;
 using System.Security.Cryptography;
@@ -62,35 +63,68 @@ namespace SIPS.DAL
         }
 
         // 3. THE LOGIN METHOD
-        public string AuthenticateUser(string email, string password)
-        {
-            // DEBUG: Let's see what password we are trying to check
-            string hashedAttempt = HashPassword(password);
-           // System.Windows.Forms.MessageBox.Show("DEBUG: Hashed Login Attempt: " + hashedAttempt);
+        //public string AuthenticateUser(string email, string password)
+        //{
+        //    // DEBUG: Let's see what password we are trying to check
+        //    string hashedAttempt = HashPassword(password);
+        //   // System.Windows.Forms.MessageBox.Show("DEBUG: Hashed Login Attempt: " + hashedAttempt);
 
+        //    try
+        //    {
+        //        using (NpgsqlConnection conn = dbManager.GetConnection())
+        //        {
+        //            conn.Open();
+        //            // The LOWER(email) part tells the database to ignore capital letters!
+        //            string query = "SELECT role FROM users WHERE LOWER(email) = @email AND password = @pass";
+
+        //            using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+        //            {
+        //                cmd.Parameters.AddWithValue("@email", email.Trim().ToLower());
+        //                cmd.Parameters.AddWithValue("@pass", hashedAttempt);
+
+        //                object result = cmd.ExecuteScalar();
+        //                return result != null ? result.ToString() : null;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Windows.Forms.MessageBox.Show("DB ERROR: " + ex.Message);
+
+
+        //        return null;
+        //    }
+        //}
+
+        public DataTable AuthenticateUser(string email, string password)
+        {
             try
             {
+                // 1. Hash the password the user just typed
+                string hashedInput = SecurityHelper.HashPassword(password);
+
                 using (NpgsqlConnection conn = dbManager.GetConnection())
                 {
                     conn.Open();
-                    // The LOWER(email) part tells the database to ignore capital letters!
-                    string query = "SELECT role FROM users WHERE LOWER(email) = @email AND password = @pass";
+                    // 2. Look for the email AND the hashed password
+                    // Make sure column names match your pgAdmin (email, password, role, userid)
+                    string query = "SELECT userid, role FROM users WHERE email = @e AND password = @p";
 
                     using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@email", email.Trim().ToLower());
-                        cmd.Parameters.AddWithValue("@pass", hashedAttempt);
+                        cmd.Parameters.AddWithValue("@e", email);
+                        cmd.Parameters.AddWithValue("@p", hashedInput);
 
-                        object result = cmd.ExecuteScalar();
-                        return result != null ? result.ToString() : null;
+                        NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        return dt; // Returns the row if found, empty if not
                     }
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("DB ERROR: " + ex.Message);
-
-
+                System.Windows.Forms.MessageBox.Show("Auth Error: " + ex.Message);
                 return null;
             }
         }
@@ -150,14 +184,51 @@ namespace SIPS.DAL
         //    catch { return false; }
         //}
 
+        //public bool AddUser(string name, string email, string password, string role, string signature, string address)
+        //{
+        //    try
+        //    {
+        //        using (NpgsqlConnection conn = dbManager.GetConnection())
+        //        {
+        //            conn.Open();
+        //            // Note: Use the column names exactly as they appear in your pgAdmin screenshot
+        //            string query = "INSERT INTO users (name, email, password, role, signature, address) " +
+        //                           "VALUES (@n, @e, @p, @r, @s, @a)";
+
+        //            using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+        //            {
+        //                cmd.Parameters.AddWithValue("@n", name);
+        //                cmd.Parameters.AddWithValue("@e", email);
+        //                cmd.Parameters.AddWithValue("@p", password); // In a real app, this should be hashed!
+        //                cmd.Parameters.AddWithValue("@r", role);
+        //                cmd.Parameters.AddWithValue("@s", signature);
+        //                cmd.Parameters.AddWithValue("@a", address);
+
+        //                cmd.ExecuteNonQuery();
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // This helps you see the actual SQL error if it fails
+        //        System.Windows.Forms.MessageBox.Show("Database Error: " + ex.Message);
+        //        return false;
+        //    }
+        //}
         public bool AddUser(string name, string email, string password, string role, string signature, string address)
         {
             try
             {
+                // 1. SECURITY UPGRADE: Scramble the password before it leaves this method
+                // This ensures plain-text passwords are never stored in your database.
+                string hashedPassword = SecurityHelper.HashPassword(password);
+
                 using (NpgsqlConnection conn = dbManager.GetConnection())
                 {
                     conn.Open();
-                    // Note: Use the column names exactly as they appear in your pgAdmin screenshot
+
+                    // Using the exact lowercase column names from your pgAdmin
                     string query = "INSERT INTO users (name, email, password, role, signature, address) " +
                                    "VALUES (@n, @e, @p, @r, @s, @a)";
 
@@ -165,7 +236,10 @@ namespace SIPS.DAL
                     {
                         cmd.Parameters.AddWithValue("@n", name);
                         cmd.Parameters.AddWithValue("@e", email);
-                        cmd.Parameters.AddWithValue("@p", password); // In a real app, this should be hashed!
+
+                        // 2. USE THE HASH: We save 'hashedPassword' instead of the raw 'password'
+                        cmd.Parameters.AddWithValue("@p", hashedPassword);
+
                         cmd.Parameters.AddWithValue("@r", role);
                         cmd.Parameters.AddWithValue("@s", signature);
                         cmd.Parameters.AddWithValue("@a", address);
@@ -177,7 +251,6 @@ namespace SIPS.DAL
             }
             catch (Exception ex)
             {
-                // This helps you see the actual SQL error if it fails
                 System.Windows.Forms.MessageBox.Show("Database Error: " + ex.Message);
                 return false;
             }
@@ -252,6 +325,38 @@ namespace SIPS.DAL
                 }
             }
             catch { return false; }
+        }
+
+        public DataTable ValidateLogin(string username, string password)
+        {
+            try
+            {
+                // 1. SCRAMBLE the entered password first
+                string hashedInput = SecurityHelper.HashPassword(password);
+
+                using (NpgsqlConnection conn = dbManager.GetConnection())
+                {
+                    conn.Open();
+                    // 2. We check the database for the username AND the HASHED password
+                    string query = "SELECT userid, role FROM users WHERE name = @u AND password = @p";
+
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@u", username);
+                        cmd.Parameters.AddWithValue("@p", hashedInput); // Using the hash here!
+
+                        NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Login Error: " + ex.Message);
+                return null;
+            }
         }
     }
 }

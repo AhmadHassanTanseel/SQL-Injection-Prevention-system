@@ -33,18 +33,18 @@
             button1 = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            dataGridView1 = new DataGridView();
-            label1 = new Label();
             button3 = new Button();
+            label1 = new Label();
+            dataGridView1 = new DataGridView();
+            tabPage2 = new TabPage();
             button4 = new Button();
             label2 = new Label();
             dataGridView2 = new DataGridView();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
@@ -106,6 +106,35 @@
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(357, 693);
+            button3.Name = "button3";
+            button3.Size = new Size(178, 34);
+            button3.TabIndex = 2;
+            button3.Text = "Place Order";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label1.Location = new Point(275, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(369, 38);
+            label1.TabIndex = 1;
+            label1.Text = "Book Your Magazines Here";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(0, 58);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(904, 610);
+            dataGridView1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             tabPage2.Controls.Add(button4);
@@ -119,34 +148,6 @@
             tabPage2.Text = "My Bookings";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 58);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(904, 610);
-            dataGridView1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label1.Location = new Point(275, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(369, 38);
-            label1.TabIndex = 1;
-            label1.Text = "Book Your Magazines Here";
-            // 
-            // button3
-            // 
-            button3.Location = new Point(357, 693);
-            button3.Name = "button3";
-            button3.Size = new Size(178, 34);
-            button3.TabIndex = 2;
-            button3.Text = " Book Selected";
-            button3.UseVisualStyleBackColor = true;
-            // 
             // button4
             // 
             button4.Location = new Point(357, 688);
@@ -155,6 +156,7 @@
             button4.TabIndex = 5;
             button4.Text = "Cancel Booking";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // label2
             // 
@@ -189,9 +191,9 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
         }

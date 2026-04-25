@@ -46,24 +46,20 @@ namespace SIPS.DAL
             DataTable dt = new DataTable();
             try
             {
-                using (NpgsqlConnection conn = dbManager.GetConnection())
+                using (var conn = new DatabaseManager().GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Magazines";
-
-                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    // Use the exact lowercase name from your pgAdmin
+                    string query = "SELECT magazineid, title, category, price, stock FROM magazines";
+                    using (var adapter = new NpgsqlDataAdapter(query, conn))
                     {
-                        using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(cmd))
-                        {
-                            // This fills a nice, clean table format that your UI Grid can easily read
-                            adapter.Fill(dt);
-                        }
+                        adapter.Fill(dt);
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // If it fails, it returns an empty table so your app doesn't crash
+                System.Windows.Forms.MessageBox.Show("Repo Error: " + ex.Message);
             }
             return dt;
         }
