@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace SIPS.UI
 {
@@ -442,6 +443,108 @@ namespace SIPS.UI
         {
             LoadRevenueData();
             MessageBox.Show("Financial records updated!");
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 1. Safety Check: Make sure the user didn't click the header row
+            if (e.RowIndex >= 0)
+            {
+                // 2. Get the selected row
+                DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
+
+                // 3. Map the columns to your TextBoxes
+                // Note: Column numbers [0, 1, 2...] must match your pgAdmin table order
+                // txtUserID.Text = row.Cells["userid"].Value.ToString(); // Keep this hidden or read-only
+                txtUserName.Text = row.Cells["name"].Value.ToString();
+                txtUserEmail.Text = row.Cells["email"].Value.ToString();
+
+                // For the Role ComboBox
+                cmbUserRole.Text = row.Cells["role"].Value.ToString();
+
+                //txtSignature.Text = row.Cells[""].Value.ToString();
+                txtUserAddress.Text = row.Cells["address"].Value.ToString();
+
+                // Note: We usually DON'T fill the password box for security. 
+                // If they want to change it, they type a new one; otherwise, it stays the same.
+            }
+        }
+
+        private bool IsInputValid()
+        {
+            // 1. Check for empty title
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Please enter a Magazine Title.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 2. Check if Price is a valid decimal
+            if (!decimal.TryParse(textBox3.Text, out _))
+            {
+                MessageBox.Show("Price must be a valid number (e.g., 10.50).", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 3. Check if Stock is a valid whole number
+            if (!int.TryParse(textBox4.Text, out _))
+            {
+                MessageBox.Show("Stock must be a whole number.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            //if (string.IsNullOrWhiteSpace(textBox2.Text))
+            //{
+            //    MessageBox.Show("Please select a valid Category.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return false;
+            //}
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Category cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true; // All checks passed!
+        }
+
+        private void txtUserName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUserEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUserPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            // 1. Ask the user for confirmation (prevents accidental logouts)
+            DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // 2. Create a new instance of your Login form
+                // Note: Make sure 'Login' is the exact name of your login form class
+                Login login = new Login();
+
+                // 3. Show the login screen
+                login.Show();
+
+                // 4. Close the current dashboard (Admin or Customer)
+                this.Close();
+            }
         }
     }
 }

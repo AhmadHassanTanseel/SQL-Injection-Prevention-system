@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnLogout = new Button();
             button2 = new Button();
             button1 = new Button();
             tabControl1 = new TabControl();
@@ -50,6 +51,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Dock = DockStyle.Left;
@@ -57,6 +59,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(266, 744);
             panel1.TabIndex = 0;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(12, 698);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(112, 34);
+            btnLogout.TabIndex = 1;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // button2
             // 
@@ -212,5 +224,6 @@
         private Button button4;
         private Label label2;
         private DataGridView dataGridView2;
+        private Button btnLogout;
     }
 }

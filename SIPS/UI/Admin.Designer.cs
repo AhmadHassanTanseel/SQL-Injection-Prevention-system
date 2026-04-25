@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label14 = new Label();
             button7 = new Button();
             button6 = new Button();
             button5 = new Button();
@@ -72,11 +73,11 @@
             button12 = new Button();
             dataGridView2 = new DataGridView();
             tpSales = new TabPage();
+            lblTotalRevenue = new Label();
             button13 = new Button();
             label5 = new Label();
             dataGridView3 = new DataGridView();
-            label14 = new Label();
-            lblTotalRevenue = new Label();
+            btnLogout = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
@@ -103,6 +105,15 @@
             panel1.Size = new Size(269, 744);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(0, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(69, 25);
+            label14.TabIndex = 4;
+            label14.Text = "label14";
             // 
             // button7
             // 
@@ -409,6 +420,7 @@
             cmbUserRole.Name = "cmbUserRole";
             cmbUserRole.Size = new Size(317, 33);
             cmbUserRole.TabIndex = 17;
+            cmbUserRole.SelectedIndexChanged += cmbUserRole_SelectedIndexChanged;
             // 
             // txtUserAddress
             // 
@@ -423,6 +435,7 @@
             txtUserPass.Name = "txtUserPass";
             txtUserPass.Size = new Size(377, 31);
             txtUserPass.TabIndex = 15;
+            txtUserPass.TextChanged += txtUserPass_TextChanged;
             // 
             // txtUserEmail
             // 
@@ -430,6 +443,7 @@
             txtUserEmail.Name = "txtUserEmail";
             txtUserEmail.Size = new Size(377, 31);
             txtUserEmail.TabIndex = 14;
+            txtUserEmail.TextChanged += txtUserEmail_TextChanged;
             // 
             // txtUserName
             // 
@@ -437,6 +451,7 @@
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(350, 31);
             txtUserName.TabIndex = 13;
+            txtUserName.TextChanged += txtUserName_TextChanged;
             // 
             // label13
             // 
@@ -532,6 +547,7 @@
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.Size = new Size(898, 348);
             dataGridView2.TabIndex = 3;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.CellValueChanged += dataGridView2_CellValueChanged;
             // 
@@ -548,6 +564,14 @@
             tpSales.TabIndex = 3;
             tpSales.Text = "Revenue";
             tpSales.UseVisualStyleBackColor = true;
+            // 
+            // lblTotalRevenue
+            // 
+            lblTotalRevenue.AutoSize = true;
+            lblTotalRevenue.Location = new Point(381, 75);
+            lblTotalRevenue.Name = "lblTotalRevenue";
+            lblTotalRevenue.Size = new Size(0, 25);
+            lblTotalRevenue.TabIndex = 6;
             // 
             // button13
             // 
@@ -580,22 +604,15 @@
             dataGridView3.Size = new Size(895, 516);
             dataGridView3.TabIndex = 4;
             // 
-            // label14
+            // btnLogout
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(0, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(69, 25);
-            label14.TabIndex = 4;
-            label14.Text = "label14";
-            // 
-            // lblTotalRevenue
-            // 
-            lblTotalRevenue.AutoSize = true;
-            lblTotalRevenue.Location = new Point(381, 75);
-            lblTotalRevenue.Name = "lblTotalRevenue";
-            lblTotalRevenue.Size = new Size(0, 25);
-            lblTotalRevenue.TabIndex = 6;
+            btnLogout.Location = new Point(12, 698);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(112, 34);
+            btnLogout.TabIndex = 14;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // Admin
             // 
@@ -679,5 +696,6 @@
         private TextBox txtUserEmail;
         private Label label14;
         private Label lblTotalRevenue;
+        private Button btnLogout;
     }
 }

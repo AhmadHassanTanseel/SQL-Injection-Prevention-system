@@ -124,7 +124,7 @@ namespace SIPS.UI
         private void button1_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage1;
-           // tabControl1.SelectedTab = tpBrowse; // Change to your tab name
+            // tabControl1.SelectedTab = tpBrowse; // Change to your tab name
             LoadAvailableMagazines();
         }
 
@@ -132,7 +132,7 @@ namespace SIPS.UI
         {
             tabControl1.SelectedTab = tabPage2;
             // 1. Move the user to the History tab
-           // tabControl1.SelectedTab = tpHistory;
+            // tabControl1.SelectedTab = tpHistory;
 
             // 2. Fetch the latest data from the database
             LoadMyBookings();
@@ -230,6 +230,25 @@ namespace SIPS.UI
             {
                 MessageBox.Show("Booking Cancelled.");
                 LoadMyBookings(); // Refresh the list
+            }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            // 1. Ask the user for confirmation (prevents accidental logouts)
+            DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // 2. Create a new instance of your Login form
+                // Note: Make sure 'Login' is the exact name of your login form class
+                Login login = new Login();
+
+                // 3. Show the login screen
+                login.Show();
+
+                // 4. Close the current dashboard (Admin or Customer)
+                this.Close();
             }
         }
     }
