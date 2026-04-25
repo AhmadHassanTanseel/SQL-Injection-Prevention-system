@@ -28,15 +28,15 @@ namespace SIPS.DAL
         }
 
         // 2. THE REGISTRATION METHOD
-        public bool RegisterUser(string name, string email, string password, string address, string signature)
+        public bool RegisterUser(string name, string email, string password, string address)
         {
             try
             {
                 using (NpgsqlConnection conn = dbManager.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO users (Name, Email, Password, Address, Signature, Role) " +
-                                   "VALUES (@name, @email, @pass, @address, @signature, 'Customer')";
+                    string query = "INSERT INTO users (Name, Email, Password, Address, Role) " +
+                                   "VALUES (@name, @email, @pass, @address, 'Customer')";
 
                     using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
                     {
@@ -44,7 +44,7 @@ namespace SIPS.DAL
                         cmd.Parameters.AddWithValue("@email", email);
                         cmd.Parameters.AddWithValue("@pass", HashPassword(password)); // Scrambles before saving!
                         cmd.Parameters.AddWithValue("@address", address);
-                        cmd.Parameters.AddWithValue("@signature", signature);
+                       // cmd.Parameters.AddWithValue("@signature", signature);
 
                         cmd.ExecuteNonQuery();
                         return true; // Success!

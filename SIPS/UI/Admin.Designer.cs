@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label14 = new Label();
+            btnLogout = new Button();
             button7 = new Button();
             button6 = new Button();
             button5 = new Button();
@@ -77,7 +77,6 @@
             button13 = new Button();
             label5 = new Label();
             dataGridView3 = new DataGridView();
-            btnLogout = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -94,7 +93,6 @@
             // panel1
             // 
             panel1.Controls.Add(btnLogout);
-            panel1.Controls.Add(label14);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button5);
@@ -106,14 +104,15 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
-            // label14
+            // btnLogout
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(0, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(69, 25);
-            label14.TabIndex = 4;
-            label14.Text = "label14";
+            btnLogout.Location = new Point(12, 698);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(112, 34);
+            btnLogout.TabIndex = 14;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // button7
             // 
@@ -172,7 +171,7 @@
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(905, 100);
             richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
+            richTextBox1.Text = "S";
             // 
             // tabControl1
             // 
@@ -604,16 +603,6 @@
             dataGridView3.Size = new Size(895, 516);
             dataGridView3.TabIndex = 4;
             // 
-            // btnLogout
-            // 
-            btnLogout.Location = new Point(12, 698);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(112, 34);
-            btnLogout.TabIndex = 14;
-            btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
-            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -626,7 +615,6 @@
             Text = "Admin";
             Load += Admin_Load;
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tpInventory.ResumeLayout(false);
@@ -694,7 +682,6 @@
         private TextBox txtUserAddress;
         private TextBox txtUserPass;
         private TextBox txtUserEmail;
-        private Label label14;
         private Label lblTotalRevenue;
         private Button btnLogout;
     }

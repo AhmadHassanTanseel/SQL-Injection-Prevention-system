@@ -56,8 +56,8 @@ namespace SIPS.UI
                     textBox1.Text, // Usually the Name box
                     textBox4.Text, // Usually the Email box
                     textBox3.Text, // Usually the Password box
-                    textBox2.Text, // Usually the Address box
-                    richTextBox1.Text
+                    textBox2.Text // Usually the Address box
+                    //richTextBox1.Text
             );
 
             // 3. Show the result!
