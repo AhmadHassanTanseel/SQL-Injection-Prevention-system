@@ -19,6 +19,7 @@ namespace SIPS.UI
         public Registeration()
         {
             InitializeComponent();
+            AppTheme.ApplyToForm(this);
         }
 
         private void label2_Click(object sender, EventArgs e)

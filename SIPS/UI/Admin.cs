@@ -17,6 +17,7 @@ namespace SIPS.UI
         public Admin()
         {
             InitializeComponent();
+            AppTheme.ApplyToForm(this);
         }
 
         private void LoadMagazines()

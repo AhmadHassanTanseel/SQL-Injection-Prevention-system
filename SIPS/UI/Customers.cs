@@ -20,6 +20,7 @@ namespace SIPS.UI
         public Customers(int userId)
         {
             InitializeComponent();
+            AppTheme.ApplyToForm(this);
             this.currentUserId = userId; // Catch the ID from Login
 
             // CALL THE LOAD METHOD HERE

@@ -8,6 +8,7 @@ namespace SIPS
         public Login()
         {
             InitializeComponent();
+            AppTheme.ApplyToForm(this);
         }
 
         private void label1_Click(object sender, EventArgs e)
